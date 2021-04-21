@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Ekgn.NuHello</PackageId>
+    <Authors>Eliah Kagan</Authors>
+    <Product>NuHello</Product>
+    <Description>This is an example "hello world" repository and package. Its purpose is to demonstrate basic NuGet usage.</Description>
+    <PackageLicenseExpression>0BSD</PackageLicenseExpression>
+    <Copyright></Copyright>
+    <PackageProjectUrl>https://github.com/EliahKagan/NuHello</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/EliahKagan/NuHello</RepositoryUrl>
+    <PackageTags>example</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
