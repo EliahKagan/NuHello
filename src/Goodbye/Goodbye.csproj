@@ -3,15 +3,24 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Ekgn.NuHello</PackageId>
+    <PackageId>Ekgn.NuHello.Goodbye</PackageId>
     <Authors>Eliah Kagan</Authors>
     <Product>NuHello</Product>
-    <Description>This is an example "hello world" repository and package. Its purpose is to demonstrate basic NuGet usage. This package delivers a message in a static property, contained in a class library.</Description>
+    <Description>This is an example "hello world" repository and package. Its purpose is to demonstrate basic NuGet usage. This package delivers a data file to your project's build directory.</Description>
     <PackageLicenseExpression>0BSD</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/EliahKagan/NuHello</PackageProjectUrl>
     <RepositoryUrl>https://github.com/EliahKagan/NuHello</RepositoryUrl>
-    <PackageTags>example</PackageTags>
+    <PackageTags>example data</PackageTags>
   </PropertyGroup>
+
+  <Import Project="Ekgn.Goodbye.targets" />
+
+  <ItemGroup>
+    <None Include="message.txt;Ekgn.Goodbye.targets">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\LICENSE">
