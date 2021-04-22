@@ -16,7 +16,7 @@
   <Import Project="Ekgn.Goodbye.targets" />
 
   <ItemGroup>
-    <None Include="message.txt;Ekgn.Goodbye.targets">
+    <None Include="message.dll;Ekgn.Goodbye.targets">
       <Pack>true</Pack>
       <PackagePath>build</PackagePath>
     </None>
