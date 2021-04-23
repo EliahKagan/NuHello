@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Ekgn.NuHello.Goodbye</id>
+    <version>1.0.0</version>
+    <authors>Eliah Kagan</authors>
+    <owners>Eliah Kagan</owners>
+    <license type="expression">0BSD</license>
+    <projectUrl>https://github.com/EliahKagan/NuHello</projectUrl>
+    <description>This package delivers a data file to your project's build directory.</description>
+    <tags>example data</tags>
+    <contentFiles>
+      <files include="any/any/message.txt" buildAction="content" flatten="true" copyToOutput="true" />
+    </contentFiles>
+  </metadata>
+
+  <files>
+    <file src="contentFiles/any/any/message.txt" target="contentFiles/any/any" />
+    <file src="LICENSE" />
+  </files>
+</package>

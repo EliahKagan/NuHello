@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Ekgn.NuHello.Goodbye</id>
+    <version>1.0.0</version>
+    <authors>Eliah Kagan</authors>
+    <owners>Eliah Kagan</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">0BSD</license>
+    <licenseUrl>https://licenses.nuget.org/0BSD</licenseUrl>
+    <projectUrl>https://github.com/EliahKagan/NuHello</projectUrl>
+    <description>This package delivers a data file to your project's build directory.</description>
+    <tags>example data</tags>
+    <contentFiles>
+      <files include="any/any/message.txt" buildAction="content" copyToOutput="true" flatten="true" />
+    </contentFiles>
+  </metadata>
+</package>

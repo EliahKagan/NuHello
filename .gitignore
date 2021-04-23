@@ -1,6 +1,9 @@
-# build files
+# Build files
 bin/
 obj/
 
-# local Visual Studio files
+# Local Visual Studio files
 .vs/
+
+# My recent PowerShell history (to look at while writing/editing README.md)
+/history.txt

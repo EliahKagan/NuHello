@@ -6,7 +6,7 @@
     <PackageId>Ekgn.NuHello</PackageId>
     <Authors>Eliah Kagan</Authors>
     <Product>NuHello</Product>
-    <Description>This is an example "hello world" repository and package. Its purpose is to demonstrate basic NuGet usage. This package delivers a message in a static property, contained in a class library.</Description>
+    <Description>package delivers a message in a static property, contained in a class library.</Description>
     <PackageLicenseExpression>0BSD</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/EliahKagan/NuHello</PackageProjectUrl>
     <RepositoryUrl>https://github.com/EliahKagan/NuHello</RepositoryUrl>
