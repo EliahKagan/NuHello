@@ -16,14 +16,15 @@
 # NuHello - a NuGet package demonstration
 
 **NuHello** is an example &ldquo;hello world&rdquo; repository and package. Its
-purpose is to demonstrate how to do a few things with [NuGet](https://en.wikipedia.org/wiki/NuGet):
+purpose is to demonstrate how to do a few things with
+[NuGet](https://en.wikipedia.org/wiki/NuGet):
 
 - A NuGet package described in a SDK-style `.csproj` (with no `.nuspec`).
 - Deployment to a local NuGet package source with `nuget.exe`.
-- A NuGet package that just delivers `contentFiles` (and no DLLs), using
-  `.nuspec` and `.target` files.
+- A NuGet package that just delivers `contentFiles` (and no DLLs), using a
+  `.nuspec` file (but no `.target` file).
 - Per-project local package sources in SDK-style projects (with the `dotnet`
-  CLI).
+  CLI), using `Nuget.Config`.
 - Adding local package sources in LINQPad.
 - Manually editing NuGet package dependencies in LINQPad queries (in the XML
   header of a `.linq` file).
@@ -61,7 +62,8 @@ the `dotnet` CLI these days (or from Visual Studio), you very well may not have
 [Microsoft&rsquo;s
 instructions](https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools#nugetexe-cli)
 detail how to install it. If you&rsquo;re using Windows, another way to install
-`nuget.exe` is with the [`scoop`](https://scoop.sh/) package manager:
+`nuget.exe`, besides those given there, is with the
+[`scoop`](https://scoop.sh/) package manager:
 
 ```powershell
 scoop install nuget
@@ -88,17 +90,17 @@ doesn&rsquo;t match.
 However, __when you are experimenting with making and locally deploying NuGet
 packages__, you may create, locally deploy, and then use projects that depend
 on those packages. In this case, if you deploy a newer &ldquo;version&rdquo; of
-the package to your local package source&mdash;something you&rsquo;d never do
-with a remote source, or even a local one that another developer was using
-(such as over a network share)&mdash;the cached version may continue to be
-used.
+the package that has the exact same version number to your local package
+source&mdash;something you&rsquo;d never do with a remote source, or even a
+local one that another developer was using (such as over a network
+share)&mdash;the cached version may continue to be used.
 
 You can avoid this by removing it from your local cache. The easiest way to do
 this is just to clear your cache entirely. Usually this is no problem because
 running a restore in a project, which is usually done automatically when
 needed, will cause any missing packages to be retrieved again.
 
-Please note that this doesn&rsquo;t just locally cached packages from local
+Please note that this doesn&rsquo;t just clear locally cached packages from local
 NuGet package sources, but also locally cached packages from remote NuGet
 package sources such as [nuget.org](https://www.nuget.org/):
 
@@ -112,9 +114,9 @@ for details.
 
 (N.B. Counterintuitively, `dotnet clean` may break in a project after doing
 this. Assuming the packages are still available, you can run `dotnet restore`
-and then `dotnet clean` works again. Other `dotnet` CLI actions that may
-require a restore, such as `dotnet build`, will take care of doing the restore,
-so you don&rsquo;t have to run `dotnet restore` manually before running
+to make `dotnet clean` work again. Other `dotnet` CLI actions that may require
+a restore, such as `dotnet build`, will take care of doing the restore, so you
+don&rsquo;t have to run `dotnet restore` manually before running
 `dotnet build`, even if you&rsquo;ve just cleared your local NuGet caches.)
 
 ## src/Hello &ndash; Ekgn.NuHello
@@ -134,13 +136,13 @@ contains:
 ```
 
 Although the package is generated on build, I have not set up an automatic
-build action to deploy this. (You would not usually want to do that, at least
-if you are not using continuous integration and continuous deployment, and
-perhaps not even then. The build might succeed but give an unsuitable result.
+build action to deploy it to the local package source. (You would not usually
+want to do that, especially if you are not using continuous integration and
+continuous deployment. The build might succeed but give an unsuitable result.
 Furthermore, one often builds during the course of development, when the code
 is in no condition to be deployed.)
 
-To build the project, generate the `Ekgn.NuHello` NuGet pacakge, and deploy the
+To build the project, generate the `Ekgn.NuHello` NuGet package, and deploy the
 package to a local package source in the `publish` directory, you can run the
 following commands. The initial `cd` command assumes you&rsquo;re starting out
 from the top-level directory of the working tree (the `NuHello` directory,
@@ -205,14 +207,14 @@ To do this in LINQPad:
    *Query > NuGet Package Manager*.
 2. If you&rsquo;re running a non-paid version of LINQPad, you&rsquo;ll see a
    message about limited NuGet search functionality within LINQPad.
-   That&rsquo;sno problem.
+   That&rsquo;s no problem.
 3. At the bottom of the *LINQPad NuGet Manager* window, there is a drop-down
    menu, in which &ldquo;NuGet 3 official package source&rdquo; is most likely
    selected. Click that drop-down menu and select &ldquo;(configure
    sources&hellip;)&rdquo;.
-4. In the *NuGet Settings* dialog, in &ldquo;Package Sources&rdquo; tab, near
-   the bottom, put in any name you like for &ldquo;Name&rdquo; and the full
-   (absolute) path to the local NuGet package source directory in
+4. In the *NuGet Settings* dialog, in the &ldquo;Package Sources&rdquo; tab,
+   near the bottom, put in any name you like for &ldquo;Name&rdquo; and the
+   full (absolute) path to the local NuGet package source directory in
    &ldquo;Source&rdquo;. (You can select the source by clicking the
    &ldquo;&hellip;&rdquo; button and navigating to it in a file picker dialog.)
 5. Click &ldquo;Save&rdquo;. It&rsquo;s fine for the local package source to
@@ -222,13 +224,15 @@ To do this in LINQPad:
 7. Click &ldquo;Close&rdquo; to leave the *LINQPad NuGet Manager* window. The
    query file already has the necessary NuGet dependency set up.
 
-Then, assuming the package is deployed to the local package source, it should be found, and the LINQPad query, when run, should output:
+Then, assuming the package is deployed to the local package source, it should
+be found. The LINQPad query, when run, should output:
 
 ```none
 Hello, world!
 ```
 
-To see how the dependency is specified in the LINQPad query, open the query file `Hello-nutest.linq` in a text editor. This lets you see its XML header:
+To see how the dependency is specified in the LINQPad query, open the query
+file `Hello-nutest.linq` in a text editor. This lets you see its XML header:
 
 ```xml
 <Query Kind="Statements">
@@ -245,8 +249,8 @@ package does not even contain a DLL or any other binary file, though most of
 the time you&rsquo;d use this technique, it would be to deliver a native DLL.
 
 This is a simple demonstration of `contentFiles`, a mechanism for delivering
-additional files to projects that depend in a package, *other* than DLLs (and
-files that support them) built from source code in the package.
+additional files to projects that depend on a package, *other* than libraries
+built from source code in the package.
 
 When a project depends on `Ekgn.NuHello.Goodbye`, and you build that project,
 the file `contentFiles/any/any/message.txt` is delivered to the build output
@@ -288,9 +292,9 @@ The test code opens the file `message.txt`, which `Ekgn.NuHello.Goodbye` causes
 to be delivered to the test project&rsquo;s build output directory, and ensures
 it has the anticipated contents.
 
-Usually, if one uses the `contentFiles` technique detailed above, one delivers
-one or more DLLs. In this case, a text file is delivered. This would not be
-very useful, and might even be inconvenient to access, by an ordinary program,
-because `dotnet run` uses the directory it is run from as the current
+(Usually, if one uses the `contentFiles` technique detailed above, it is to
+deliver one or more DLLs. In this case, a text file is delivered. This would
+not be very useful, and might even be inconvenient to access, by an ordinary
+program, because `dotnet run` uses the directory it is run from as the current
 directory. But unit tests, at least with xUnit, are run from the build output
-directory, so `message.txt` is found.
+directory, so `message.txt` is found.)
