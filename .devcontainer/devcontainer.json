@@ -1,6 +1,6 @@
 {
     "name": "NuHello",
-    "image": "mcr.microsoft.com/devcontainers/dotnet:0-7.0",
+    "image": "mcr.microsoft.com/devcontainers/dotnet:0-6.0",
     "features": {
         "ghcr.io/devcontainers/features/powershell:1": {},
         "ghcr.io/lukewiwa/features/shellcheck:0": {},
