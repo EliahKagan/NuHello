@@ -18,7 +18,8 @@ namespace Hello.Test {
         [Fact]
         public void HelloWorldIsHelloWorld()
         {
-            Assert.Equal("Hello, world!", Phrases.HelloWorld);
+            // FIXME: Put it back to "Hello, world!" after testing.
+            Assert.Equal("Hi, world!", Phrases.HelloWorld);
         }
     }
 }
