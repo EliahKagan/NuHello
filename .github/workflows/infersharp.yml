@@ -41,7 +41,10 @@ jobs:
           sarif_file: infer-out/report.sarif
 
       - name: Infer# analysis results
-        run: cat <<<"${{ steps.runinfersharp.outputs.results }}"
+        run: |
+          cat <<'EOF'
+          ${{ steps.runinfersharp.outputs.results }}
+          EOF
 
       - name: Upload Infer# report as an artifact
         uses: actions/upload-artifact@v3
