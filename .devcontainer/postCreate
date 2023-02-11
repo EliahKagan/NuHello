@@ -70,3 +70,12 @@ pwsh -c 'Set-PSRepository PSGallery -InstallationPolicy Trusted'
 pwsh -c 'Install-Module -Name posh-git'
 pwsh -c 'Add-PoshGitToProfile -AllHosts'
 msg '...pwsh customized.'
+
+nl
+msg 'Installing nuget CLI...'
+pushd /tmp
+wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+sudo install -t /usr/local/bin -m 644 nuget.exe
+popd
+sudo install -t /usr/local/bin -m 755 .devcontainer/nuget
+msg '...nuget CLI installed.'
