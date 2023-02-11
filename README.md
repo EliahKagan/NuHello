@@ -15,8 +15,8 @@
 
 # NuHello - a NuGet package demonstration
 
-**NuHello** is an example &ldquo;hello world&rdquo; repository and package. Its
-purpose is to demonstrate how to do a few things with
+**NuHello** is an example “hello world” repository and package. Its purpose is
+to demonstrate how to do a few things with
 [NuGet](https://en.wikipedia.org/wiki/NuGet):
 
 - A NuGet package described in a SDK-style `.csproj` (with no `.nuspec`).
@@ -24,31 +24,31 @@ purpose is to demonstrate how to do a few things with
 - A NuGet package that just delivers `contentFiles` (and no DLLs), using a
   `.nuspec` file (but no `.target` file).
 - Per-project local package sources in SDK-style projects (with the `dotnet`
-  CLI), using `Nuget.Config`.
+  CLI), using `nuget.config`.
 - Adding local package sources in LINQPad.
 - Manually editing NuGet package dependencies in LINQPad queries (in the XML
   header of a `.linq` file).
 
 NuHello is [licensed](LICENSE) under the
-[0BSD](https://spdx.org/licenses/0BSD.html) (&ldquo;Zero-Clause BSD
-License&rdquo;), which is a [&ldquo;public-domain
-equivalent&rdquo;](https://en.wikipedia.org/wiki/Public-domain-equivalent_license)
+[0BSD](https://spdx.org/licenses/0BSD.html) (“Zero-Clause BSD License”), which
+is a [“public-domain
+equivalent”](https://en.wikipedia.org/wiki/Public-domain-equivalent_license)
 license.
 
 That applies to all files in this repository, including this README file. The
-code in this repository also has some outside dependencies&mdash;mainly
-[xUnit](https://xunit.net/)&mdash; which are retrieved automatically as needed.
-Those outside dependencies are covered by other licenses.
+code in this repository also has some outside dependencies—mainly
+[xUnit](https://xunit.net/)— which are retrieved automatically as needed. Those
+outside dependencies are covered by other licenses.
 
 ---
 
 The NuGet topics covered in this repository are covered below.
 
-## Microsoft&rsquo;s NuGet Documentation
+## Microsoft’s NuGet Documentation
 
 Although this repository and README cover some aspects of common use, they
 focus on some uncommon use cases (and cover those only incompletely). So this
-is no substitute for [Microsoft&rsquo;s official NuGet
+is no substitute for [Microsoft’s official NuGet
 documentation](https://docs.microsoft.com/en-us/nuget/), which is pretty
 detailed.
 
@@ -59,9 +59,9 @@ Since most ordinary NuGet package creation, deployment, and use is done from
 the `dotnet` CLI these days (or from Visual Studio), you very well may not have
 `nuget.exe` installed.
 
-[Microsoft&rsquo;s
+[Microsoft’s
 instructions](https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools#nugetexe-cli)
-detail how to install it. If you&rsquo;re using Windows, another way to install
+detail how to install it. If you’re using Windows, another way to install
 `nuget.exe`, besides those given there, is with the
 [`scoop`](https://scoop.sh/) package manager:
 
@@ -85,22 +85,22 @@ Normally this is no problem, since when a new version of a package is released
 (to any package source, remote or local), the developer gives it a different
 version number than that package has ever used before. Then, when you specify
 that version number, the cached package is not used, since its version number
-doesn&rsquo;t match.
+doesn’t match.
 
-However, __when you are experimenting with making and locally deploying NuGet
-packages__, you may create, locally deploy, and then use projects that depend
-on those packages. In this case, if you deploy a newer &ldquo;version&rdquo; of
-the package that has the exact same version number to your local package
-source&mdash;something you&rsquo;d never do with a remote source, or even a
-local one that another developer was using (such as over a network
-share)&mdash;the cached version may continue to be used.
+However, **when you are experimenting with making and locally deploying NuGet
+packages**, you may create, locally deploy, and then use projects that depend
+on those packages. In this case, if you deploy a newer “version” of the package
+that has the exact same version number to your local package source—something
+you’d never do with a remote source, or even a local one that another developer
+was using (such as over a network share)—the cached version may continue to be
+used.
 
 You can avoid this by removing it from your local cache. The easiest way to do
 this is just to clear your cache entirely. Usually this is no problem because
 running a restore in a project, which is usually done automatically when
 needed, will cause any missing packages to be retrieved again.
 
-Please note that this doesn&rsquo;t just clear locally cached packages from local
+Please note that this doesn’t just clear locally cached packages from local
 NuGet package sources, but also locally cached packages from remote NuGet
 package sources such as [nuget.org](https://www.nuget.org/):
 
@@ -116,8 +116,8 @@ for details.
 this. Assuming the packages are still available, you can run `dotnet restore`
 to make `dotnet clean` work again. Other `dotnet` CLI actions that may require
 a restore, such as `dotnet build`, will take care of doing the restore, so you
-don&rsquo;t have to run `dotnet restore` manually before running
-`dotnet build`, even if you&rsquo;ve just cleared your local NuGet caches.)
+don’t have to run `dotnet restore` manually before running `dotnet build`, even
+if you’ve just cleared your local NuGet caches.)
 
 ## src/Hello &ndash; Ekgn.NuHello
 
@@ -144,9 +144,9 @@ is in no condition to be deployed.)
 
 To build the project, generate the `Ekgn.NuHello` NuGet package, and deploy the
 package to a local package source in the `publish` directory, you can run the
-following commands. The initial `cd` command assumes you&rsquo;re starting out
-from the top-level directory of the working tree (the `NuHello` directory,
-unless you named it something else when you cloned the repository).
+following commands. The initial `cd` command assumes you’re starting out from
+the top-level directory of the working tree (the `NuHello` directory, unless
+you named it something else when you cloned the repository).
 
 ```powershell
 cd src\Hello
@@ -170,8 +170,8 @@ dotnet test
 This will, if necessary, build the `Hello.Test` project, as well as the `Hello`
 project being tested.
 
-Since this test doesn&rsquo;t use the deployed NuGet package (or any NuGet)
-package, it s only a test of the `Hello` project&rsquo;s code.
+Since this test doesn’t use the deployed NuGet package (or any NuGet) package,
+it s only a test of the `Hello` project’s code.
 
 ## test/Hello.NuTest
 
@@ -191,8 +191,8 @@ package for the `Hello.Test.csproj`. (It does, of course, *retrieve* the
 package from the local package source, if necessary. That happens during the
 restore operation.)
 
-You don&rsquo;t have to modify any configuration for the local package source
-to be used, because the project has a `NuGet.Config` file that specifies it.
+You don’t have to modify any configuration for the local package source to be
+used, because the project has a `nuget.config` file that specifies it.
 
 ## test/Hello-nutest.linq
 
@@ -203,26 +203,24 @@ LINQPad does not support custom per-query NuGet sources.
 
 To do this in LINQPad:
 
-1. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> or go to
-   *Query > NuGet Package Manager*.
-2. If you&rsquo;re running a non-paid version of LINQPad, you&rsquo;ll see a
-   message about limited NuGet search functionality within LINQPad.
-   That&rsquo;s no problem.
+1. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> or go to *Query > NuGet
+   Package Manager*.
+2. If you’re running a non-paid version of LINQPad, you’ll see a message about
+   limited NuGet search functionality within LINQPad. That’s no problem.
 3. At the bottom of the *LINQPad NuGet Manager* window, there is a drop-down
-   menu, in which &ldquo;NuGet 3 official package source&rdquo; is most likely
-   selected. Click that drop-down menu and select &ldquo;(configure
-   sources&hellip;)&rdquo;.
-4. In the *NuGet Settings* dialog, in the &ldquo;Package Sources&rdquo; tab,
-   near the bottom, put in any name you like for &ldquo;Name&rdquo; and the
-   full (absolute) path to the local NuGet package source directory in
-   &ldquo;Source&rdquo;. (You can select the source by clicking the
-   &ldquo;&hellip;&rdquo; button and navigating to it in a file picker dialog.)
-5. Click &ldquo;Save&rdquo;. It&rsquo;s fine for the local package source to
-   be listed under the official remote one (unless someone publishes a
-   different package, also called `Ekgn.NuHello`, to nuget.org).
-6. Click &ldquo;OK&rdquo;.
-7. Click &ldquo;Close&rdquo; to leave the *LINQPad NuGet Manager* window. The
-   query file already has the necessary NuGet dependency set up.
+   menu, in which “NuGet 3 official package source” is most likely selected.
+   Click that drop-down menu and select “(configure sources&hellip;)”.
+4. In the *NuGet Settings* dialog, in the “Package Sources” tab, near the
+   bottom, put in any name you like for “Name” and the full (absolute) path to
+   the local NuGet package source directory in “Source”. (You can select the
+   source by clicking the “&hellip;” button and navigating to it in a file
+   picker dialog.)
+5. Click “Save”. It’s fine for the local package source to be listed under the
+   official remote one (unless someone publishes a different package, also
+   called `Ekgn.NuHello`, to nuget.org).
+6. Click “OK”.
+7. Click “Close” to leave the *LINQPad NuGet Manager* window. The query file
+   already has the necessary NuGet dependency set up.
 
 Then, assuming the package is deployed to the local package source, it should
 be found. The LINQPad query, when run, should output:
@@ -246,7 +244,7 @@ The NuGet package `Ekgn.NuHello.Goodbye`, generated from the directory
 `src/Goodbye` (using `Ekgn.NuHello.Goodbye.nuspec`), is not even a library.
 There is no managed or native source code in this directory. The resulting
 package does not even contain a DLL or any other binary file, though most of
-the time you&rsquo;d use this technique, it would be to deliver a native DLL.
+the time you’d use this technique, it would be to deliver a native DLL.
 
 This is a simple demonstration of `contentFiles`, a mechanism for delivering
 additional files to projects that depend on a package, *other* than libraries
@@ -285,12 +283,12 @@ This builds the test, if necessary. But it neither packs nor deploys the
 `test/Hello.NuTest`, it does *retrieve* the package from the local package
 source, if necessary, during the restore operation.)
 
-The `Nuget.Config` file specifies the local package source, so (as with
+The `nuget.config` file specifies the local package source, so (as with
 `test/Hello.NuTest`) you need not modify any global configuration.
 
 The test code opens the file `message.txt`, which `Ekgn.NuHello.Goodbye` causes
-to be delivered to the test project&rsquo;s build output directory, and ensures
-it has the anticipated contents.
+to be delivered to the test project’s build output directory, and ensures it
+has the anticipated contents.
 
 (Usually, if one uses the `contentFiles` technique detailed above, it is to
 deliver one or more DLLs. In this case, a text file is delivered. This would
