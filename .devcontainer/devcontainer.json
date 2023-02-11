@@ -1,0 +1,39 @@
+{
+    "name": "NuHello",
+    "image": "mcr.microsoft.com/devcontainers/dotnet:0-6.0",
+    "features": {
+        "ghcr.io/devcontainers/features/powershell:1": {},
+        "ghcr.io/lukewiwa/features/shellcheck:0": {},
+        "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+        "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+            "packages": "mono-complete,vim-nox"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bierner.markdown-preview-github-styles",
+                "eamodio.gitlens",
+                "GitHub.vscode-pull-request-github",
+                "mads-hartmann.bash-ide-vscode",
+                "mhutchie.git-graph",
+                "ms-dotnettools.csharp",
+                "ms-vsliveshare.vsliveshare",
+                "stkb.rewrap",
+                "streetsidesoftware.code-spell-checker",
+                "timonwong.shellcheck"
+            ],
+            "settings": {
+                "gitlens.showWelcomeOnInstall": false,
+                "gitlens.showWhatsNewAfterUpgrades": false
+            }
+        }
+    },
+    "initializeCommand": [".devcontainer/initialize"],
+    "postCreateCommand": [".devcontainer/postCreate"],
+    "postStartCommand": "dotnet restore",
+    "waitFor": "postCreateCommand",
+    "containerEnv": {
+        "SHELL": "/usr/bin/fish"
+    }
+}

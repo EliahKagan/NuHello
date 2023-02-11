@@ -1,0 +1,5 @@
+# Shell scripts and batch files are particular about line endings.
+.devcontainer/initialize text eol=lf
+.devcontainer/initialize.cmd text eol=crlf
+.devcontainer/mono eol=lf
+.devcontainer/postCreate text eol=lf
