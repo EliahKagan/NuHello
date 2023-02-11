@@ -4,7 +4,10 @@
     "features": {
         "ghcr.io/devcontainers/features/powershell:1": {},
         "ghcr.io/lukewiwa/features/shellcheck:0": {},
-        "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {}
+        "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+        "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+            "packages": "nuget,vim-nox"
+        }
     },
     "customizations": {
         "vscode": {
