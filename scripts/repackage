@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -eu
-shopt -s globstar nullglob
+shopt -s nullglob
 
 msg() {
     if test -t 1; then
@@ -22,7 +22,7 @@ if ! test -f NuHello.sln; then
 fi
 
 msg 'Deleting built package files and clearing NuGet cache.'
-rm -rf -- **/{bin,obj} publish/* src/Goodbye/*.nupkg
+rm -rf {src,test}/*/{bin,obj} publish/* src/Goodbye/*.nupkg
 dotnet nuget locals all --clear
 nl
 
