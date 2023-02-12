@@ -1,5 +1,5 @@
 <!--
-  Copyright (c) 2021 Eliah Kagan
+  Copyright (c) 2021, 2023 Eliah Kagan
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose with or without fee is hereby granted.
@@ -149,9 +149,9 @@ the top-level directory of the working tree (the `NuHello` directory, unless
 you named it something else when you cloned the repository).
 
 ```powershell
-cd src\Hello
+cd src/Hello
 dotnet build
-nuget add .\bin\Debug\Ekgn.NuHello.1.0.0.nupkg -source ..\..\publish
+nuget add bin/Debug/Ekgn.NuHello.1.0.0.nupkg -source ../../publish
 ```
 
 ## test/Hello.Test
@@ -163,7 +163,7 @@ than using it through NuGet.
 If you wanted to run just that test:
 
 ```powershell
-cd test\Hello.Test
+cd test/Hello.Test
 dotnet test
 ```
 
@@ -182,7 +182,7 @@ this *does* test the locally deployed `Ekgn.NuHello` NuGet package.
 If you wanted to run just this test:
 
 ```powershell
-cd test\Hello.NuTest
+cd test/Hello.NuTest
 dotnet test
 ```
 
@@ -261,9 +261,9 @@ To build the `Ekgn.NuHello.Goodbye` NuGet package and deploy it to the local
 package source, you can run these commands:
 
 ```powershell
-cd src\Goodbye
+cd src/Goodbye
 nuget pack
-nuget add Ekgn.NuHello.Goodbye.1.0.0.nupkg -source ..\..\publish
+nuget add Ekgn.NuHello.Goodbye.1.0.0.nupkg -source ../../publish
 ```
 
 ## test/Goodbye.NuTest
@@ -274,7 +274,7 @@ tests the locally deployed `Ekgn.NuHello.Goodbye` NuGet package.
 If you wanted to run just this test:
 
 ```powershell
-cd test\Goodbye.NuTest
+cd test/Goodbye.NuTest
 dotnet test
 ```
 
