@@ -3,26 +3,41 @@
 set -eu
 shopt -s globstar nullglob
 
+msg() {
+    if test -t 1; then
+        printf '\e[1m%s\e[0m\n' "$1"
+    else
+        printf '%s\n' "$1"
+    fi
+}
+
+nl() {
+    printf '\n'
+}
+
 # Refuse to run if we are not in the correct directory.
 if ! test -f NuHello.sln; then
     printf '%s: error: not in top-level solution directory\n' "$0" >&2
     exit 1
 fi
 
-# Delete all package files everywhere that originated from NuHello.
+msg 'Deleting built package files and clearing NuGet cache.'
 rm -rf -- **/{bin,obj} publish/* src/Goodbye/*.nupkg
 dotnet nuget locals all --clear
+nl
 
-# Rebuild and locally publish Hello.
+msg 'Rebuilding and locally publishing Hello.'
 pushd src/Hello
 dotnet build
 nuget add bin/Debug/Ekgn.NuHello.1.0.0.nupkg -source ../../publish
 popd
+nl
 
-# Rebuild and locally publish Goodbye.
+msg 'Rebuilding and locally publishing Goodbye.'
 pushd src/Goodbye
 nuget pack
 nuget add Ekgn.NuHello.Goodbye.1.0.0.nupkg -source ../../publish
 popd
+nl
 
-printf 'Packages rebuilt and locally republished. Run "dotnet test" to test.\n'
+msg 'Packages rebuilt and locally republished. Run "dotnet test" to test.'
