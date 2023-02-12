@@ -3,8 +3,8 @@ name: Run Unit Tests
 on: [push, pull_request]
 
 jobs:
-  tests:
-    name: Test
+  test-prepackaged:
+    name: Test Prepackaged
 
     strategy:
       fail-fast: false
@@ -14,5 +14,29 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: 'actions/checkout@v3'
-      - run: dotnet test
+      - name: 'Checkout repository'
+        uses: 'actions/checkout@v3'
+      - name: 'Test against old packages'
+        run: dotnet test
+
+  repackage-and-test:
+    name: Repackage and Test
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: 'Checkout repository'
+        uses: 'actions/checkout@v3'
+      - name: 'Full clean and repackage'
+        run: scripts/repackage
+      - name: 'Test against new packages'
+        run: dotnet test
