@@ -66,9 +66,11 @@ msg '...fish customized.'
 
 nl
 msg 'Customizing pwsh (PowerShell)...'
+pwsh -c 'Update-Help'
 pwsh -c 'Set-PSRepository PSGallery -InstallationPolicy Trusted'
 pwsh -c 'Install-Module -Name posh-git'
 pwsh -c 'Add-PoshGitToProfile -AllHosts'
+pwsh -c 'Install-Module -Name PSScriptAnalyzer'
 msg '...pwsh customized.'
 
 nl

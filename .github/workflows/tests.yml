@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: 'Checkout repository'
+      - name: 'Check out repository'
         uses: 'actions/checkout@v3'
       - name: 'Test against old packages'
         run: dotnet test
@@ -23,20 +23,22 @@ jobs:
     name: Repackage and Test
 
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+        shell: [bash, pwsh]
+        include:
+          - shell: bash
+            script: repackage
+          - shell: pwsh
+            script: repackage.ps1
 
     runs-on: ${{ matrix.os }}
 
-    defaults:
-      run:
-        shell: bash
-
     steps:
-      - name: 'Checkout repository'
+      - name: 'Check out repository'
         uses: 'actions/checkout@v3'
       - name: 'Full clean and repackage'
-        run: scripts/repackage
+        run: ${{ matrix.shell }} scripts/${{ matrix.script }}
       - name: 'Test against new packages'
         run: dotnet test
