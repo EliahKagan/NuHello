@@ -27,7 +27,7 @@ function Write-Message($Text) {
     }
 }
 
-function Emit-Divider {
+function Write-Divider {
     Write-Output ''
 }
 
@@ -45,7 +45,7 @@ Write-Message 'Deleting built package files and clearing NuGet cache.'
 Remove-Item -Recurse -Force src/*/bin,src/*/obj,test/*/bin,test/*/obj,publish/*
 Remove-Item -Force src/Goodbye/*.nupkg
 dotnet nuget locals all --clear || exit $LASTEXITCODE
-Emit-Divider
+Write-Divider
 
 Write-Message 'Rebuilding and locally publishing Hello.'
 Push-Location src/Hello
@@ -53,7 +53,7 @@ dotnet build || exit $LASTEXITCODE
 nuget add bin/Debug/Ekgn.NuHello.1.0.0.nupkg -source ../../publish ||
     exit $LASTEXITCODE
 Pop-Location
-Emit-Divider
+Write-Divider
 
 Write-Message 'Rebuilding and locally publishing Goodbye.'
 Push-Location src/Goodbye
@@ -61,7 +61,7 @@ nuget pack || exit $LASTEXITCODE
 nuget add Ekgn.NuHello.Goodbye.1.0.0.nupkg -source ../../publish ||
     exit $LASTEXITCODE
 Pop-Location
-Emit-Divider
+Write-Divider
 
 Write-Message `
     'Packages rebuilt and locally republished. Run "dotnet test" to test.'
