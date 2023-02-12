@@ -19,6 +19,8 @@
         "mhutchie",
         "nupkg",
         "nutest",
+        "runinfersharp",
+        "SARIF",
         "shellcheck",
         "stkb",
         "timonwong"
