@@ -119,7 +119,7 @@ a restore, such as `dotnet build`, will take care of doing the restore, so you
 don’t have to run `dotnet restore` manually before running `dotnet build`, even
 if you’ve just cleared your local NuGet caches.)
 
-## src/Hello &ndash; Ekgn.NuHello
+## src/Hello – Ekgn.NuHello
 
 The NuGet package `Ekgn.NuHello`, generated from the project
 `src/Hello/Hello.csproj`, is a very simple library, consisting of a static
@@ -209,12 +209,12 @@ To do this in LINQPad:
    limited NuGet search functionality within LINQPad. That’s no problem.
 3. At the bottom of the *LINQPad NuGet Manager* window, there is a drop-down
    menu, in which “NuGet 3 official package source” is most likely selected.
-   Click that drop-down menu and select “(configure sources&hellip;)”.
+   Click that drop-down menu and select “(configure sources…)”.
 4. In the *NuGet Settings* dialog, in the “Package Sources” tab, near the
    bottom, put in any name you like for “Name” and the full (absolute) path to
    the local NuGet package source directory in “Source”. (You can select the
-   source by clicking the “&hellip;” button and navigating to it in a file
-   picker dialog.)
+   source by clicking the “…” button and navigating to it in a file picker
+   dialog.)
 5. Click “Save”. It’s fine for the local package source to be listed under the
    official remote one (unless someone publishes a different package, also
    called `Ekgn.NuHello`, to nuget.org).
@@ -238,7 +238,7 @@ file `Hello-nutest.linq` in a text editor. This lets you see its XML header:
 </Query>
 ```
 
-## src/Goodbye &ndash; Ekgn.NuHello.Goodbye
+## src/Goodbye – Ekgn.NuHello.Goodbye
 
 The NuGet package `Ekgn.NuHello.Goodbye`, generated from the directory
 `src/Goodbye` (using `Ekgn.NuHello.Goodbye.nuspec`), is not even a library.
