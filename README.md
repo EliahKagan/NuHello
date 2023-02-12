@@ -37,7 +37,7 @@ license.
 
 That applies to all files in this repository, including this README file. The
 code in this repository also has some outside dependencies—mainly
-[xUnit](https://xunit.net/)— which are retrieved automatically as needed. Those
+[xUnit](https://xunit.net/)—which are retrieved automatically as needed. Those
 outside dependencies are covered by other licenses.
 
 ---
