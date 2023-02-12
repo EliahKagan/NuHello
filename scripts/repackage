@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -eu
+shopt -s globstar nullglob
+
+# Refuse to run if we are not in the correct directory.
+if ! test -f NuHello.sln; then
+    printf '%s: error: not in top-level solution directory\n' "$0" >&2
+    exit 1
+fi
+
+# Delete all package files everywhere that originated from NuHello.
+rm -rf -- **/{bin,obj} publish/* src/Goodbye/*.nupkg
+dotnet nuget locals all --clear
+
+# Rebuild and locally publish Hello.
+pushd src/Hello
+dotnet build
+nuget add bin/Debug/Ekgn.NuHello.1.0.0.nupkg -source ../../publish
+popd
+
+# Rebuild and locally publish Goodbye.
+pushd src/Goodbye
+nuget pack
+nuget add Ekgn.NuHello.Goodbye.1.0.0.nupkg -source ../../publish
+popd
+
+printf 'Packages rebuilt and locally republished. Run "dotnet test" to test.\n'
