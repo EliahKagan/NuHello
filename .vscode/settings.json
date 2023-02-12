@@ -19,6 +19,7 @@
         "mhutchie",
         "nupkg",
         "nutest",
+        "pwsh",
         "runinfersharp",
         "SARIF",
         "shellcheck",
