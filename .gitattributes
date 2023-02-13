@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: 0BSD
 
 # Shell scripts and batch files are particular about line endings.
-.devcontainer/initialize text eol=lf
-.devcontainer/initialize.cmd text eol=crlf
-.devcontainer/mono text eol=lf
-.devcontainer/postCreate text eol=lf
-scripts/repackage text eol=lf
+/.devcontainer/initialize text eol=lf
+/.devcontainer/initialize.cmd text eol=crlf
+/.devcontainer/nuget text eol=lf
+/.devcontainer/postCreate text eol=lf
+/scripts/repackage text eol=lf
