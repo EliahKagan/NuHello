@@ -9,6 +9,3 @@ obj/
 
 # Carried-in configuration when building a dev container.
 .inherited-configuration
-
-# My recent PowerShell history (to look at while writing/editing README.md)
-/history.txt
