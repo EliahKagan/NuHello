@@ -1,8 +1,17 @@
 # SPDX-License-Identifier: 0BSD
 
-# Shell scripts and batch files are particular about line endings.
+# Shell scripts must have LF (Unix-style) line endings.
 /.devcontainer/initialize text eol=lf
-/.devcontainer/initialize.cmd text eol=crlf
 /.devcontainer/nuget text eol=lf
 /.devcontainer/postCreate text eol=lf
 /scripts/repackage text eol=lf
+
+# Other scripts with #! lines (hashbangs) need LF endings for the #! to work.
+/scripts/repackage.ps1 text eol=lf
+
+# Batch files must have CRLF (Window-style) line endings.
+/.devcontainer/initialize.cmd text eol=crlf
+
+# Minimize the chance of Git wrongly detecting a binary file as text.
+*.nupkg binary
+*.snupkg binary
