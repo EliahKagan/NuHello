@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: 'Check out repository'
-        uses: 'actions/checkout@v3'
+        uses: 'actions/checkout@v4'
       - name: 'Test against old packages'
         run: dotnet test
 
@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: 'Check out repository'
-        uses: 'actions/checkout@v3'
+        uses: 'actions/checkout@v4'
       - name: 'Full clean and repackage'
         run: ${{ matrix.shell }} scripts/${{ matrix.script }}
       - name: 'Test against new packages'
