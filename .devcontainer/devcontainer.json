@@ -31,9 +31,8 @@
         }
     },
     "initializeCommand": [".devcontainer/initialize"],
-    "postCreateCommand": [".devcontainer/postCreate"],
+    "onCreateCommand": [".devcontainer/onCreate"],
     "postStartCommand": "dotnet restore",
-    "waitFor": "postCreateCommand",
     "containerEnv": {
         "SHELL": "/usr/bin/fish"
     }
