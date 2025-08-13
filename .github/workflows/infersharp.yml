@@ -27,6 +27,9 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Put global.json in place
+        run: cp .github/workflows/infersharp-global.json global.json
+
       - name: Build
         run: dotnet build --output binaries-for-infer
 
