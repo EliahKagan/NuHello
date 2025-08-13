@@ -41,6 +41,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Install `nuget` command
+        if: startsWith(matrix.os, 'macos')
+        run: brew install nuget
       - name: Full clean and repackage
         run: ${{ matrix.shell }} scripts/${{ matrix.script }}
       - name: Test against new packages
