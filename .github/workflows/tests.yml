@@ -2,6 +2,9 @@ name: Run Unit Tests
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   test-prepackaged:
     name: Test Prepackaged
