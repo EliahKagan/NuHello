@@ -9,17 +9,14 @@ on:
   # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
 jobs:
   analyze:
     runs-on: ubuntu-latest
-
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
 
     steps:
       - name: Check out repository
@@ -28,7 +25,7 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.x
 
       - name: Put global.json in place
         run: cp .github/workflows/infersharp-global.json global.json
@@ -40,7 +37,7 @@ jobs:
         uses: microsoft/infersharpaction@v1.5
         id: runinfersharp
         with:
-          binary-path: 'binaries-for-infer'
+          binary-path: binaries-for-infer
 
       - name: Upload SARIF output to GitHub Security Center
         uses: github/codeql-action/upload-sarif@v3

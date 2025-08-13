@@ -2,6 +2,9 @@ name: Run Unit Tests
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   test-prepackaged:
     name: Test Prepackaged
@@ -9,14 +12,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-22.04, macos-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: 'Check out repository'
-        uses: 'actions/checkout@v4'
-      - name: 'Test against old packages'
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Test against old packages
         run: dotnet test
 
   repackage-and-test:
@@ -25,7 +28,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-22.04, macos-latest, windows-latest]
         shell: [bash, pwsh]
         include:
           - shell: bash
@@ -36,9 +39,12 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: 'Check out repository'
-        uses: 'actions/checkout@v4'
-      - name: 'Full clean and repackage'
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install `nuget` command
+        if: startsWith(matrix.os, 'macos')
+        run: brew install nuget
+      - name: Full clean and repackage
         run: ${{ matrix.shell }} scripts/${{ matrix.script }}
-      - name: 'Test against new packages'
+      - name: Test against new packages
         run: dotnet test

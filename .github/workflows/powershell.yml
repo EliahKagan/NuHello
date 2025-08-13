@@ -2,17 +2,14 @@ name: PSScriptAnalyzer
 
 on: [push, pull_request]
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
 jobs:
   analyze:
     runs-on: ubuntu-latest
-
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
 
     steps:
       - name: Check out repository
