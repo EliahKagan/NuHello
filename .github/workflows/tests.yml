@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Test against old packages
         run: dotnet test
 
@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install `nuget` command
         if: startsWith(matrix.os, 'macos')
         run: brew install nuget
